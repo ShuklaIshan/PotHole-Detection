@@ -218,4 +218,49 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Python
 .venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+
+# Environment
+.env
+
+# Dataset — do not push
+data/
+data/raw/
+data/processed/
+*.zip
+
+# Trained models — do not push
+*.pt
+*.pth
+*.onnx
+
+# YOLO outputs
+runs/
+outputs/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Dataset
+data/
+*.zip
+
+# Models
+models/
+*.pt
+*.pth
+*.onnx
+
+# YOLO outputs
+**/runs/
+outputs/
