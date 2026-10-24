@@ -1,81 +1,95 @@
 # 🚧 AI-Based Pothole Detection and Road Damage Monitoring
 
-An AI-powered computer vision system for detecting potholes in road images and video using **YOLO11**. The project aims to automate road inspection and provide information that can later be used for road-condition monitoring and maintenance prioritization.
+An AI-powered computer vision system that detects potholes in road images and videos using **YOLO11** and **OpenCV**. The project aims to support automated road inspection by identifying potholes, visualizing their locations within images, and evaluating detection performance.
+
+> **Current status:** Pothole detection and model evaluation are implemented. GPS-based location tagging, severity estimation, and RC car integration are planned extensions.
 
 ---
 
-## 📌 Project Overview
+## 📌 Overview
 
-Potholes are a common road-safety problem that can cause vehicle damage, accidents, and traffic disruptions. Traditional road inspection is mostly manual, time-consuming, and difficult to scale.
+Potholes pose risks to road safety, vehicle condition, and traffic efficiency. Traditional road inspections often require substantial manual effort and can be difficult to scale.
 
-This project aims to develop an automated pothole detection system using:
+This project explores how deep learning and computer vision can automate part of the road inspection process.
 
-- 📷 Camera / road images or video
-- 🤖 YOLO11 object detection
-- 👁️ OpenCV for image and video processing
-- 📊 Model evaluation metrics
-- 📍 GPS-based location tagging *(planned/integration stage)*
-- 🚗 RC car-based road inspection platform *(planned/integration stage)*
+The system processes road images or video frames, detects potholes using YOLO11, and displays detections with bounding boxes and confidence scores.
 
-The system will detect potholes from road images/video and draw bounding boxes around the detected regions.
+The longer-term goal is to develop a road damage monitoring system that can support road maintenance planning.
 
----
+## ✨ Features
 
-## 🎯 Objectives
-
-The main objectives of this project are:
-
-1. Detect potholes automatically using deep learning.
-2. Train a YOLO11 model on a pothole dataset.
-3. Process road images and videos using OpenCV.
-4. Evaluate the model using standard object-detection metrics.
-5. Display detected potholes with confidence scores and bounding boxes.
-6. Associate detected potholes with geographical locations using GPS.
-7. Develop a low-cost prototype for automated road inspection.
-
----
+* **Pothole detection:** Detect potholes using a trained YOLO11 object detection model.
+* **Image and video processing:** Support road imagery and video-based inspection workflows.
+* **Detection visualization:** Display bounding boxes and confidence scores.
+* **Dataset preparation:** Prepare pothole datasets for model training and evaluation.
+* **Model evaluation:** Measure performance using precision, recall, mAP@50, and mAP@50–95.
+* **Modular development:** Maintain separate scripts for dataset inspection, preparation, visualization, and model training.
 
 ## 🧠 System Architecture
 
 ```text
-                 ┌─────────────────────┐
-                 │   Road Camera       │
-                 │ Image / Video Input │
-                 └──────────┬──────────┘
-                            │
-                            ▼
-                 ┌─────────────────────┐
-                 │       OpenCV        │
-                 │ Preprocessing/Input │
-                 └──────────┬──────────┘
-                            │
-                            ▼
-                 ┌─────────────────────┐
-                 │      YOLO11         │
-                 │   Object Detector   │
-                 └──────────┬──────────┘
-                            │
-                  ┌─────────┴─────────┐
-                  │                   │
-                  ▼                   ▼
-          ┌──────────────┐     ┌──────────────┐
-          │  Pothole     │     │  Confidence  │
-          │  Bounding Box│     │    Score     │
-          └──────┬───────┘     └──────────────┘
-                 │
-                 ▼
-        ┌────────────────────┐
-        │ Severity / Analysis│
-        └─────────┬──────────┘
-                  │
-                  ▼
-        ┌────────────────────┐
-        │ GPS Location Tag   │
-        │    (Planned)       │
-        └─────────┬──────────┘
-                  │
-                  ▼
-        ┌────────────────────┐
-        │ Road Damage Report │
-        │ / Visualization    │
-        └────────────────────┘
+       Road Camera / Image / Video
+                    |
+                    v
+          Image / Frame Input
+                    |
+                    v
+             OpenCV Processing
+                    |
+                    v
+           YOLO11 Object Detector
+                    |
+                    v
+          Pothole Detection Results
+                    |
+           +--------+--------+
+           |                 |
+           v                 v
+      Bounding Boxes    Confidence Scores
+           |                 |
+           +--------+--------+
+                    |
+                    v
+          Detection Visualization
+                    |
+                    v
+       Road Damage Monitoring Report
+                    |
+                    v
+       Future: GPS / Severity Analysis
+```
+
+GPS tagging and severity analysis are planned extensions and are not included in the current reported model evaluation.
+
+## 🛠️ Technology Stack
+
+| Technology     | Purpose                                   |
+| -------------- | ----------------------------------------- |
+| Python         | Core programming language                 |
+| YOLO11         | Pothole object detection                  |
+| Ultralytics    | Model training, inference, and evaluation |
+| OpenCV         | Image and video processing                |
+| PyTorch        | Deep learning framework                   |
+| Git and GitHub | Version control and collaboration         |
+
+## 📂 Project Structure
+
+```text
+PotHole-Detection/
+├── src/
+│   └── data/
+│       ├── audit_samples.py
+│       ├── dataset_inspect.py
+│       ├── inspect_classes.py
+│       ├── model_train.py
+│       ├── prepare_all_country_potholes.py
+│       └── visualize_samples.py
+├── data/                 # Local datasets; not tracked by Git
+├── models/               # Local trained weights; not tracked by Git
+├── runs/                 # Training and evaluation outputs
+├── requirements.txt
+├── .gitignore
+└── README.md
+```
+
+The exact contents of the source directory may evolve as development con
